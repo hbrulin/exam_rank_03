@@ -1,6 +1,6 @@
-rm _our_mini_paint
+rm _our_micro_paint
 rm a.out
-rm mini_paint
+rm micro_paint
 rm coutput
 rm example_
 rm gen
