@@ -17,7 +17,6 @@ typedef struct s_shape
 	float width;
 	float height;
 	char cha;
-	struct s_shape *next;
 }				t_shape;
 
 void	ft_bzero(void *s, size_t n)
