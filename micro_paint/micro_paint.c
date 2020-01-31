@@ -55,7 +55,7 @@ int clear(FILE *file, char *drawing, char *s)
 		fclose(file);
 	if (drawing)
 		free(drawing);
-	if (s) // a voir
+	if (s)
 		ft_error((char *)s);
 	return (1);
 }
@@ -77,6 +77,28 @@ char *get_zone(FILE *file, t_zone *zone)
 		drawing[i++] = zone->background;
 	return (drawing);
 }
+
+/*
+If Xtl <= Xa <= Xbr and Ytl <= Ya <= Ybr alors le point est dans le rectangle
+si x < coordonnee x du rectangle 
+OU
+coordonnee x + largeur < x
+OU
+si y < coordonnee y 
+OU coordonnee y + hauteur < y
+--> je suis hors du triangle (0)
+
+SI
+x - coordonne x < 1 distance entre x debut du rectangle inferieur a 1
+OU 
+coordonee x + largeur - x < 1 distance entre x fin rectangle et x inferieur a 1
+OU
+distance y et debut y du rectangle inferieur a 1 + idem fin du rectangle
+--> je suis en bordure de rectangle (2), j'affiche si r
+
+SINON : je suis dans un rectangle (1), que j'affiche si R
+
+*/
 
 int		within_rec(float x, float y, t_shape *shape)
 {
@@ -128,12 +150,12 @@ int draw_shapes(FILE *file, t_zone *zone, char *drawing)
 
 void	draw(t_zone *zone, char *drawing)
 {
-	int i = 0;
-	while (i < zone->height)
+	int y = 0;
+	while (y < zone->height)
 	{
-		write(1, drawing + (i * zone->width), zone->width);
+		write(1, drawing + (y * zone->width), zone->width);
 		write(1, "\n", 1);
-		i++;
+		y++;
 	}
 }
 

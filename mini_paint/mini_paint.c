@@ -60,6 +60,17 @@ int clear(FILE *file, char *drawing, char const *str)
 	return (1);
 }
 
+
+/*
+srqt((Xa - Xb) * (Xa - Xb) + (Ya - Yb) * (Ya - Yb))
+si distance superieure au rayon
+-> hors du cercle (0)
+sinon :
+si rayon - distance < 1
+-> je suis en bordure de rectangle, j;affiche si c
+sinon je suis au milieu d'un cercle, je print si C*/
+
+
 int		within_circle(float x, float y, t_shape *shape)
 {
 	float dist;
@@ -75,12 +86,12 @@ int		within_circle(float x, float y, t_shape *shape)
 
 void	draw(t_zone *zone, char *drawing)
 {
-	int i = 0;
-	while (i < zone->height)
+	int y = 0;
+	while (y < zone->height)
 	{
-		write(1, drawing + (i * zone->width), zone->width);
+		write(1, drawing + (y * zone->width), zone->width);
 		write (1, "\n", 1);
-		i++;
+		y++;
 	}
 }
 
