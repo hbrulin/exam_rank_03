@@ -110,12 +110,6 @@ void	draw_rec(t_zone *zone, char *drawing, t_shape *shape)
 	}
 }
 
-int check_shape(t_shape *shape)
-{
-	return (shape->width > 0.00000000 && shape->height > 0.00000000
-			&& (shape->type == 'r' || shape->type == 'R'));
-}
-
 int draw_shapes(FILE *file, t_zone *zone, char *drawing)
 {
 	t_shape shape;
@@ -123,7 +117,7 @@ int draw_shapes(FILE *file, t_zone *zone, char *drawing)
 
 	while ((ret = fscanf(file, "%c %f %f %f %f %c\n", &shape.type, &shape.x, &shape.y, &shape.width, &shape.height, &shape.cha)) == 6)
 	{
-		if (!check_shape(&shape))
+		if (shape.width <= 0.00000000 || shape.height <= 0.00000000 || (shape.type != 'r' && shape.type != 'R'))
 			return (0);
 		draw_rec(zone, drawing, &shape);
 	}
