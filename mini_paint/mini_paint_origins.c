@@ -84,17 +84,6 @@ int		within_circle(float x, float y, t_shape *shape)
 	return (0);
 }
 
-void	draw(t_zone *zone, char *drawing)
-{
-	int y = 0;
-	while (y < zone->height)
-	{
-		write(1, drawing + (y * zone->width), zone->width);
-		write (1, "\n", 1);
-		y++;
-	}
-}
-
 void	draw_circle(t_zone *zone, char *drawing, t_shape *shape)
 {
 	int y;
@@ -116,7 +105,6 @@ void	draw_circle(t_zone *zone, char *drawing, t_shape *shape)
 	}
 }
 
-
 int		draw_shapes(FILE *file, t_zone *zone, char *drawing)
 {
 	t_shape shape;
@@ -131,6 +119,17 @@ int		draw_shapes(FILE *file, t_zone *zone, char *drawing)
 	if (ret != -1)
 		return (0);
 	return (1); //si pb
+}
+
+void	draw(t_zone *zone, char *drawing)
+{
+	int y = 0;
+	while (y < zone->height)
+	{
+		write(1, drawing + (y * zone->width), zone->width);
+		write (1, "\n", 1);
+		y++;
+	}
 }
 
 char *get_zone(FILE *file, t_zone *zone)
