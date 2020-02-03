@@ -75,7 +75,7 @@ int		within_circle(float x, float y, t_shape *shape)
 {
 	float dist;
 	dist = sqrtf(powf(x - shape->x, 2.) + powf(y - shape->y, 2.));
-	if (dist <= shape->radius)
+	if (dist <= shape->radius) //ici inf ou egal
 	{
 		if ((shape->radius - dist) < 1.00000000)
 			return (2);

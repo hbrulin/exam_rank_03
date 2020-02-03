@@ -59,6 +59,7 @@ void    draw(char *drawing, t_zone *zone)
 
 int within_rec(float x, float y, t_shape *shape)
 {
+	//ATTENTION INFERIORITE SIMPLE
     if (x < shape->x || shape->x + shape->width < x || y < shape->y || shape->y + shape->height < y)
         return (0);
     if (x - shape->x < 1.00000000 || shape->x + shape->width -x < 1.00000000 || y - shape->y < 1.00000000 || shape->y + shape->height - y < 1.00000000)
